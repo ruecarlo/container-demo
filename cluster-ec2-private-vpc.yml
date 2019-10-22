@@ -352,6 +352,7 @@ Resources:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
             echo ECS_CLUSTER=${ECSCluster} >> /etc/ecs/ecs.config
+            ECS_ENABLE_SPOT_INSTANCE_DRAINING=true
             yum install -y aws-cfn-bootstrap
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource ECSAutoScalingGroup --region ${AWS::Region} 
   EC2InstanceProfile:
